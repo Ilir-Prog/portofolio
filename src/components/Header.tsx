@@ -82,8 +82,8 @@ const Header: React.FC = () => {
               >
                 <Globe className={`w-5 h-5 drop-shadow-lg ${
                   isScrolled 
-                    ? 'text-black dark:text-gray-300' 
-                    : 'text-black dark:text-white'
+                    ? 'text-gray-600 dark:text-gray-400' 
+                    : 'text-white dark:text-white'
                 }`} />
                 <span className={`text-sm font-medium drop-shadow-lg ${
                     isScrolled 
