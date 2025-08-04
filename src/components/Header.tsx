@@ -3,13 +3,12 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { content } from '../data/content';
-import LanguageIcon from './LanguageIcon';
+import LanguageToggle from './LanguageToggle';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLanguageAnimating, setIsLanguageAnimating] = useState(false);
-  const { currentLanguage, setLanguage, availableLanguages } = useLanguage();
+  const { currentLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
   const navContent = content[currentLanguage.code].nav;
@@ -28,16 +27,6 @@ const Header: React.FC = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
-  };
-
-  const handleLanguageToggle = () => {
-    setIsLanguageAnimating(true);
-    const currentIndex = availableLanguages.findIndex(lang => lang.code === currentLanguage.code);
-    const nextIndex = (currentIndex + 1) % availableLanguages.length;
-    setLanguage(availableLanguages[nextIndex]);
-    
-    // Reset animation after duration
-    setTimeout(() => setIsLanguageAnimating(false), 600);
   };
 
   return (
@@ -82,25 +71,9 @@ const Header: React.FC = () => {
           {/* Theme & Language Controls */}
           <div className="flex items-center space-x-4">
             {/* Language Selector */}
-            <button
-              onClick={handleLanguageToggle}
-              className={`group flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 backdrop-blur-sm transform hover:scale-105 ${
-                isScrolled
-                  ? 'hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-md'
-                  : 'hover:bg-white/20 dark:hover:bg-white/10 hover:shadow-lg'
-              }`}
-              title={`Switch to ${availableLanguages.find((_, index) => index === (availableLanguages.findIndex(lang => lang.code === currentLanguage.code) + 1) % availableLanguages.length)?.name}`}
-            >
-              <LanguageIcon 
-                isAnimating={isLanguageAnimating}
-               currentLanguage={currentLanguage.code}
-                className={`drop-shadow-lg group-hover:scale-110 transition-transform duration-200 ${
-                  isScrolled 
-                      ? 'text-white dark:text-white' 
-                      : 'text-white dark:text-white'
-                  }`}
-              />
-            </button>
+            <div className="hidden sm:block">
+              <LanguageToggle />
+            </div>
 
             {/* Theme Toggle */}
             <button
@@ -174,6 +147,11 @@ const Header: React.FC = () => {
                   {label}
                 </button>
               ))}
+              
+              {/* Mobile Language Toggle */}
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                <LanguageToggle />
+              </div>
             </div>
           </div>
         )}
