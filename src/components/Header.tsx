@@ -86,13 +86,12 @@ const Header: React.FC = () => {
                     : 'text-gray-800 dark:text-white'
                 }`} />
                 <span className={`text-sm font-medium drop-shadow-lg ${
-  isScrolled 
-    ? 'text-gray-700 dark:text-gray-300' 
-    : 'text-white dark:text-white'
-}`}>
-  {currentLanguage.flag}
-</span>
-
+                    isScrolled 
+                        ? 'text-gray-700 dark:text-gray-300' 
+                        : 'text-white dark:text-white'
+                    }`}>
+                    {currentLanguage.flag}
+                </span>
                 <ChevronDown className={`w-4 h-4 drop-shadow-lg ${
                   isScrolled 
                     ? 'text-gray-500 dark:text-gray-400' 
@@ -101,7 +100,7 @@ const Header: React.FC = () => {
               </button>
               
               {isLangOpen && (
-                <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-100 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
                   {availableLanguages.map((lang) => (
                     <button
                       key={lang.code}
