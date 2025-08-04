@@ -9,7 +9,7 @@ interface LanguageContextType {
 
 const languages: Language[] = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'sq', name: 'Shqip', flag: '🇦🇱' }
+  { code: 'sq', name: 'Shqip', flag: '🇽🇰' }
 ];
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

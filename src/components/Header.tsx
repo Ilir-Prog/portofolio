@@ -83,11 +83,6 @@ const Header: React.FC = () => {
               } transform hover:scale-105`}
               title={`Switch to ${availableLanguages.find((_, index) => index === (availableLanguages.findIndex(lang => lang.code === currentLanguage.code) + 1) % availableLanguages.length)?.name}`}
             >
-              <Globe className={`w-5 h-5 drop-shadow-lg ${
-                isScrolled 
-                  ? 'text-white dark:text-white' 
-                  : 'text-white dark:text-white'
-              }`} />
               <span className={`text-lg font-medium drop-shadow-lg ${
                   isScrolled 
                       ? 'text-white dark:text-white' 
