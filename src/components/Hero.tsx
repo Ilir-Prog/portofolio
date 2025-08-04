@@ -20,8 +20,7 @@ const Hero: React.FC = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("https://vkgtzzojdjchrzzymotm.supabase.co/storage/v1/object/public/iliri.isufi/Images/hero_section_image_ready.png")',
-          backgroundSize: '80%'
+          backgroundImage: 'url("https://vkgtzzojdjchrzzymotm.supabase.co/storage/v1/object/public/iliri.isufi/Images/hero_section_image_ready.png")'
         }}
       ></div>
       
