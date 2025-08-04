@@ -93,26 +93,13 @@ const Header: React.FC = () => {
             >
               <LanguageIcon 
                 isAnimating={isLanguageAnimating}
+               currentLanguage={currentLanguage.code}
                 className={`drop-shadow-lg group-hover:scale-110 transition-transform duration-200 ${
                   isScrolled 
                       ? 'text-white dark:text-white' 
                       : 'text-white dark:text-white'
                   }`}
               />
-              <span className={`text-sm font-medium drop-shadow-lg ${
-                  isScrolled 
-                      ? 'text-white dark:text-white' 
-                      : 'text-white dark:text-white'
-                  }`}>
-                  {currentLanguage.code.toUpperCase()}
-              </span>
-              <span className={`text-lg font-medium drop-shadow-lg ${
-                  isScrolled 
-                      ? 'text-white dark:text-white' 
-                      : 'text-white dark:text-white'
-                  }`}>
-                  {currentLanguage.flag}
-              </span>
             </button>
 
             {/* Theme Toggle */}
