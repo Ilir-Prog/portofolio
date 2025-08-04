@@ -54,9 +54,9 @@ const Header: React.FC = () => {
                 key={key}
                 onClick={() => scrollToSection(key)}
                 className={`font-medium transition-colors drop-shadow-lg ${
-                  isScrolled 
+                  isScrolled
                     ? 'text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400' 
-                    : 'text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-300'
+                    : 'text-white dark:text-white hover:text-blue-300 dark:hover:text-blue-200'
                 }`}
               >
                 {label}
