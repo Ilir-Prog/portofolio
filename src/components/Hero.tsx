@@ -57,7 +57,6 @@ const Hero: React.FC = () => {
         </h1>
         
         <h2 className="text-xl sm:text-2xl lg:text-3xl text-blue-200 dark:text-blue-300 mb-6 animate-fade-in-up animation-delay-200">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl text-theme-primary-light dark:text-theme-primary-light mb-6 animate-fade-in-up animation-delay-200">
           {heroContent.subtitle}
         </h2>
         
