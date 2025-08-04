@@ -94,8 +94,8 @@ const Header: React.FC = () => {
                 </span>
                 <ChevronDown className={`w-4 h-4 drop-shadow-lg ${
                   isScrolled 
-                    ? 'text-gray-500 dark:text-gray-400' 
-                    : 'text-gray-700 dark:text-white'
+                    ? 'text-gray-600 dark:text-gray-400' 
+                    : 'text-white dark:text-white'
                 }`} />
               </button>
               
