@@ -24,6 +24,7 @@ const About: React.FC = () => {
               {aboutContent.title}
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-teal-500 mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-theme-gradient mx-auto rounded-full"></div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -43,7 +44,7 @@ const About: React.FC = () => {
                   key={index}
                   className="text-center p-6 rounded-xl bg-gray-50 dark:bg-gray-800 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
                 >
-                  <feature.icon className={`w-12 h-12 ${feature.color} mx-auto mb-4`} />
+                  <feature.icon className={`w-12 h-12 text-theme-primary mx-auto mb-4`} />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
                     {feature.title}
                   </h3>
@@ -62,8 +63,9 @@ const About: React.FC = () => {
                 <div
                   key={index}
                   className="flex items-center space-x-3 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+                  className="flex items-center space-x-3 p-4 rounded-lg bg-theme-primary/10 dark:bg-theme-primary/20 hover:bg-theme-primary/20 dark:hover:bg-theme-primary/30 transition-colors"
                 >
-                  <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-theme-primary rounded-full flex-shrink-0"></div>
                   <span className="text-gray-700 dark:text-gray-300 font-medium">{skill}</span>
                 </div>
               ))}

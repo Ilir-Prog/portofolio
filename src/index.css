@@ -5,6 +5,14 @@
 @layer base {
   :root {
     color-scheme: light;
+    /* Default theme colors (English) */
+    --primary-color: #2563eb;
+    --primary-light: #93c5fd;
+    --primary-dark: #1e40af;
+    --secondary-color: #0d9488;
+    --accent-color: #06b6d4;
+    --gradient-from: #2563eb;
+    --gradient-to: #0d9488;
   }
   
   .dark {

@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
       ></div>
       
       {/* Background Image Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-800/75 to-teal-700/65 dark:from-gray-900/90 dark:via-blue-900/85 dark:to-gray-800/80"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-theme-primary-dark/85 via-theme-primary/75 to-theme-secondary/65 dark:from-gray-900/90 dark:via-theme-primary-dark/85 dark:to-gray-800/80"></div>
       
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         {/* Profile Image Placeholder */}
         <div className="mb-8">
-          <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-teal-500 flex items-center justify-center shadow-2xl border-4 border-white/30 backdrop-blur-sm">
+          <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full bg-theme-gradient flex items-center justify-center shadow-2xl border-4 border-white/30 backdrop-blur-sm">
             <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white/20 dark:bg-gray-800/40 flex items-center justify-center backdrop-blur-sm">
               <span className="text-3xl sm:text-4xl font-bold text-gray-600 dark:text-gray-300">II</span>
             </div>
@@ -57,6 +57,7 @@ const Hero: React.FC = () => {
         </h1>
         
         <h2 className="text-xl sm:text-2xl lg:text-3xl text-blue-200 dark:text-blue-300 mb-6 animate-fade-in-up animation-delay-200">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl text-theme-primary-light dark:text-theme-primary-light mb-6 animate-fade-in-up animation-delay-200">
           {heroContent.subtitle}
         </h2>
         

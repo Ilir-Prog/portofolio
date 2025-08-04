@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { content } from '../data/content';
@@ -7,7 +7,6 @@ import { content } from '../data/content';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
   const { currentLanguage, setLanguage, availableLanguages } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
@@ -71,56 +70,39 @@ const Header: React.FC = () => {
           {/* Theme & Language Controls */}
           <div className="flex items-center space-x-4">
             {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className={`flex items-center space-x-2 p-2 rounded-lg transition-colors backdrop-blur-sm ${
-                  isScrolled
-                    ? 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                    : 'hover:bg-white/20 dark:hover:bg-white/10'
-                }`}
-              >
-                <Globe className={`w-5 h-5 drop-shadow-lg ${
+            <button
+              onClick={() => {
+                const currentIndex = availableLanguages.findIndex(lang => lang.code === currentLanguage.code);
+                const nextIndex = (currentIndex + 1) % availableLanguages.length;
+                setLanguage(availableLanguages[nextIndex]);
+              }}
+              className={`flex items-center space-x-2 p-2 rounded-lg transition-all duration-200 backdrop-blur-sm ${
+                isScrolled
+                  ? 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                  : 'hover:bg-white/20 dark:hover:bg-white/10'
+              } transform hover:scale-105`}
+              title={`Switch to ${availableLanguages.find((_, index) => index === (availableLanguages.findIndex(lang => lang.code === currentLanguage.code) + 1) % availableLanguages.length)?.name}`}
+            >
+              <Globe className={`w-5 h-5 drop-shadow-lg ${
+                isScrolled 
+                  ? 'text-white dark:text-white' 
+                  : 'text-white dark:text-white'
+              }`} />
+              <span className={`text-lg font-medium drop-shadow-lg ${
                   isScrolled 
-                    ? 'text-gray-600 dark:text-gray-400' 
-                    : 'text-white dark:text-white'
-                }`} />
-                <span className={`text-sm font-medium drop-shadow-lg ${
-                    isScrolled 
-                        ? 'text-gray-700 dark:text-gray-300' 
-                        : 'text-white dark:text-white'
-                    }`}>
-                    {currentLanguage.flag}
-                </span>
-                <ChevronDown className={`w-4 h-4 drop-shadow-lg ${
+                      ? 'text-white dark:text-white' 
+                      : 'text-white dark:text-white'
+                  }`}>
+                  {currentLanguage.flag}
+              </span>
+              <span className={`text-sm font-medium drop-shadow-lg ${
                   isScrolled 
-                    ? 'text-gray-600 dark:text-gray-400' 
-                    : 'text-white dark:text-white'
-                }`} />
-              </button>
-              
-              {isLangOpen && (
-                <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                  {availableLanguages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang);
-                        setIsLangOpen(false);
-                      }}
-                      className={`w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
-                        currentLanguage.code === lang.code ? 'bg-blue-50 dark:bg-blue-900/20' : ''
-                      }`}
-                    >
-                      <span className="text-lg">{lang.flag}</span>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {lang.name}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+                      ? 'text-white dark:text-white' 
+                      : 'text-white dark:text-white'
+                  }`}>
+                  {currentLanguage.code.toUpperCase()}
+              </span>
+            </button>
 
             {/* Theme Toggle */}
             <button
