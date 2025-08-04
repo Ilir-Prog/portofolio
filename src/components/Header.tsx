@@ -136,7 +136,7 @@ const Header: React.FC = () => {
                 <Moon className={`w-5 h-5 drop-shadow-lg ${
                   isScrolled 
                     ? 'text-gray-600 dark:text-gray-400' 
-                    : 'text-gray-600 dark:text-gray-400'
+                    : 'text-white dark:text-white'
                 }`} />
               ) : (
                 <Sun className={`w-5 h-5 drop-shadow-lg ${
