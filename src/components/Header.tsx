@@ -76,14 +76,14 @@ const Header: React.FC = () => {
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className={`flex items-center space-x-2 p-2 rounded-lg transition-colors backdrop-blur-sm ${
                   isScrolled
-                    ? 'hover:bg-gray-800 dark:hover:bg-gray-800'
+                    ? 'hover:bg-gray-100 dark:hover:bg-gray-800'
                     : 'hover:bg-white/20 dark:hover:bg-white/10'
                 }`}
               >
                 <Globe className={`w-5 h-5 drop-shadow-lg ${
                   isScrolled 
-                    ? 'text-gray-600 dark:text-gray-400' 
-                    : 'text-gray-800 dark:text-white'
+                    ? 'text-black dark:text-gray-300' 
+                    : 'text-black dark:text-white'
                 }`} />
                 <span className={`text-sm font-medium drop-shadow-lg ${
                     isScrolled 
