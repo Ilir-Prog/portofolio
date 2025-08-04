@@ -34,7 +34,7 @@ const LanguageToggle: React.FC = () => {
   };
 
   return (
-    <div className="relative inline-flex bg-gray-100 dark:bg-gray-800 rounded-full p-1 transition-colors duration-200">
+    <div className="relative inline-flex bg-white/25 dark:bg-gray-800 backdrop-blur-sm rounded-full p-1 transition-colors duration-200 border border-white/40 dark:border-gray-600">
       {/* Background slider */}
       <div
         className={`absolute top-1 bottom-1 bg-white dark:bg-gray-700 rounded-full shadow-sm transition-all duration-300 ease-in-out ${
