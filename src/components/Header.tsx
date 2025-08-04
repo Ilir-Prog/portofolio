@@ -76,7 +76,7 @@ const Header: React.FC = () => {
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className={`flex items-center space-x-2 p-2 rounded-lg transition-colors backdrop-blur-sm ${
                   isScrolled
-                    ? 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                    ? 'hover:bg-gray-800 dark:hover:bg-gray-800'
                     : 'hover:bg-white/20 dark:hover:bg-white/10'
                 }`}
               >
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
               </button>
               
               {isLangOpen && (
-                <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-100 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
                   {availableLanguages.map((lang) => (
                     <button
                       key={lang.code}
