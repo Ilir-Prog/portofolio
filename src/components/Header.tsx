@@ -41,7 +41,11 @@ const Header: React.FC = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('hero')}
-              className="text-2xl font-bold text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+              className={`text-2xl font-bold transition-colors ${
+  isScrolled 
+    ? 'text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300' 
+    : 'text-white hover:text-blue-200 dark:text-white dark:hover:text-blue-300'
+}`}
             >
               II
             </button>
