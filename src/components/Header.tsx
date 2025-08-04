@@ -42,10 +42,10 @@ const Header: React.FC = () => {
             <button
               onClick={() => scrollToSection('hero')}
               className={`text-2xl font-bold transition-colors ${
-  isScrolled 
-    ? 'text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300' 
-    : 'text-white hover:text-blue-200 dark:text-white dark:hover:text-blue-300'
-}`}
+                  isScrolled 
+                      ? 'text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300' 
+                      : 'text-white hover:text-blue-200 dark:text-white dark:hover:text-blue-300'
+              }`}
             >
               II
             </button>
@@ -86,12 +86,13 @@ const Header: React.FC = () => {
                     : 'text-gray-800 dark:text-white'
                 }`} />
                 <span className={`text-sm font-medium drop-shadow-lg ${
-                  isScrolled 
-                    ? 'text-gray-700 dark:text-gray-300' 
-                    : 'text-gray-900 dark:text-white'
-                }`}>
-                  {currentLanguage.flag}
-                </span>
+  isScrolled 
+    ? 'text-gray-700 dark:text-gray-300' 
+    : 'text-white dark:text-white'
+}`}>
+  {currentLanguage.flag}
+</span>
+
                 <ChevronDown className={`w-4 h-4 drop-shadow-lg ${
                   isScrolled 
                     ? 'text-gray-500 dark:text-gray-400' 
