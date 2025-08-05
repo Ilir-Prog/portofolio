@@ -92,6 +92,11 @@ export interface Content {
       email: string;
       phone: string;
     };
+    contactInfo: {
+      title: string;
+      email: string;
+      phone: string;
+    };
     weatherWidget: {
       title: string;
       partlyCloudy: string;

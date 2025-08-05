@@ -135,7 +135,7 @@ const Contact: React.FC = () => {
             <div className="space-y-8">
               <div className="bg-gradient-to-br from-blue-50 to-teal-50 dark:from-blue-900/20 dark:to-teal-900/20 rounded-xl shadow-lg p-8">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  Contact Information
+                  {contactContent.contactInfo.title}
                 </h3>
                 
                 <div className="space-y-6">
@@ -144,7 +144,7 @@ const Contact: React.FC = () => {
                       <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Email</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{contactContent.contactInfo.email}</p>
                       <a 
                         href={`mailto:${contactContent.info.email}`}
                         className="text-gray-900 dark:text-white font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -159,7 +159,7 @@ const Contact: React.FC = () => {
                       <Phone className="w-6 h-6 text-teal-600 dark:text-teal-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Phone</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{contactContent.contactInfo.phone}</p>
                       <a 
                         href={`tel:${contactContent.info.phone}`}
                         className="text-gray-900 dark:text-white font-semibold hover:text-teal-600 dark:hover:text-teal-400 transition-colors"

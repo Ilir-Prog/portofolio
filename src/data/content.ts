@@ -206,6 +206,11 @@ export const content: Record<'en' | 'sq', Content> = {
         email: 'iliri.isufi@gmail.com',
         phone: '+383 49 857 171'
       },
+      contactInfo: {
+        title: 'Contact Information',
+        email: 'Email',
+        phone: 'Phone'
+      },
       weatherWidget: {
         title: 'Current Weather - Pristina',
         partlyCloudy: 'Partly Cloudy',
@@ -421,6 +426,11 @@ export const content: Record<'en' | 'sq', Content> = {
       info: {
         email: 'iliri.isufi@gmail.com',
         phone: '+383 49 857 171'
+      },
+      contactInfo: {
+        title: 'Informacionet e Kontaktit',
+        email: 'Email',
+        phone: 'Telefoni'
       },
       weatherWidget: {
         title: 'Moti Aktual - Prishtina',
