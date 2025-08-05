@@ -5,7 +5,6 @@ export const content: Record<'en' | 'sq', Content> = {
     hero: {
       title: 'Ilir Isufi',
       subtitle: 'Aviation Weather Forecaster',
-      description: 'Delivering critical weather forecasts for safe air navigation at Met Office of Pristina Airport',
       cta: 'Learn More'
     },
     nav: {
