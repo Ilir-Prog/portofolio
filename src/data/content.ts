@@ -216,7 +216,7 @@ export const content: Record<'en' | 'sq', Content> = {
     hero: {
       title: 'Ilir Isufi',
       subtitle: 'Parashikues Aeronautik Meteorologjik',
-      description: 'Ofroj parashikime kritike të motit për navigacion të sigurt ajror në Zyrën Meteorologjike të Aeroportit të Prishtinës',
+      
       cta: 'Mëso Më Shumë'
     },
     nav: {
