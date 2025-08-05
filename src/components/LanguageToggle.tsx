@@ -19,7 +19,7 @@ const LanguageToggle: React.FC = () => {
       label: 'English'
     },
     {
-      countryCode: 'XK',
+      countryCode: 'AL',
       languageCode: 'SH',
       fullCode: 'sq',
       label: 'Shqip'
