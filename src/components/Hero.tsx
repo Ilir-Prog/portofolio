@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
       ></div>
       
       {/* Background Image Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-blue-800/50 to-teal-700/40 dark:from-gray-900/90 dark:via-blue-900/85 dark:to-gray-800/80"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/50 to-teal-700/40 dark:from-gray-900/90 dark:via-blue-900/85 dark:to-gray-800/80"></div>
       
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
