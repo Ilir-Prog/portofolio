@@ -1,27 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Send, CheckCircle, AlertCircle, Cloud, Wind, Eye, Thermometer, Clock, RefreshCw } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { content } from '../data/content';
-
-interface WeatherData {
-  metar?: {
-    raw: string;
-    observation_time: string;
-    temp_c?: string;
-    wind_dir?: string;
-    wind_speed?: string;
-    wind_gust?: string;
-    visibility?: string;
-    weather?: string;
-  };
-  taf?: {
-    raw: string;
-    issue_time: string;
-    valid_time: string;
-  };
-  error?: string;
-  timestamp: string;
-}
 
 const Contact: React.FC = () => {
   const { currentLanguage } = useLanguage();
@@ -33,45 +13,6 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [weatherLoading, setWeatherLoading] = useState(false);
-  const [weatherError, setWeatherError] = useState<string | null>(null);
-
-  const fetchWeatherData = async () => {
-    setWeatherLoading(true);
-    setWeatherError(null);
-    
-    try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/fetch-weather`, {
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch weather data');
-      }
-      
-      const data: WeatherData = await response.json();
-      setWeatherData(data);
-      
-      if (data.error) {
-        setWeatherError(data.error);
-      }
-    } catch (error) {
-      setWeatherError('Unable to load weather data');
-      console.error('Weather fetch error:', error);
-    } finally {
-      setWeatherLoading(false);
-    }
-  };
-
-  React.useEffect(() => {
-    fetchWeatherData();
-    // Refresh weather data every 10 minutes
-    const interval = setInterval(fetchWeatherData, 10 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -230,127 +171,21 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              {/* Live Weather Widget */}
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl shadow-lg p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
-                    <Cloud className="w-6 h-6 mr-2 text-blue-600 dark:text-blue-400" />
-                    BKPR - Pristina Airport
-                  </h3>
-                  <button
-                    onClick={fetchWeatherData}
-                    disabled={weatherLoading}
-                    className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors disabled:opacity-50"
-                  >
-                    <RefreshCw className={`w-4 h-4 text-blue-600 dark:text-blue-400 ${weatherLoading ? 'animate-spin' : ''}`} />
-                  </button>
+              {/* Weather Widget Placeholder */}
+              <div className="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 rounded-xl shadow-lg p-8">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                  Current Weather - Pristina
+                </h3>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-white">22°C</p>
+                    <p className="text-gray-600 dark:text-gray-300">Partly Cloudy</p>
+                  </div>
+                  <div className="text-6xl">⛅</div>
                 </div>
-
-                {weatherLoading && !weatherData && (
-                  <div className="flex items-center justify-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                    <span className="ml-3 text-gray-600 dark:text-gray-300">Loading weather data...</span>
-                  </div>
-                )}
-
-                {weatherError && !weatherData && (
-                  <div className="text-center py-8">
-                    <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-2" />
-                    <p className="text-red-600 dark:text-red-400">{weatherError}</p>
-                  </div>
-                )}
-
-                {weatherData && (
-                  <div className="space-y-6">
-                    {/* METAR Section */}
-                    {weatherData.metar && (
-                      <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
-                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center">
-                          <Thermometer className="w-4 h-4 mr-2" />
-                          Current Conditions (METAR)
-                        </h4>
-                        
-                        <div className="grid grid-cols-2 gap-4 mb-3">
-                          {weatherData.metar.temp_c && (
-                            <div className="flex items-center">
-                              <Thermometer className="w-4 h-4 mr-2 text-red-500" />
-                              <span className="text-sm text-gray-600 dark:text-gray-300">
-                                {weatherData.metar.temp_c}°C
-                              </span>
-                            </div>
-                          )}
-                          
-                          {weatherData.metar.wind_speed && (
-                            <div className="flex items-center">
-                              <Wind className="w-4 h-4 mr-2 text-blue-500" />
-                              <span className="text-sm text-gray-600 dark:text-gray-300">
-                                {weatherData.metar.wind_dir}°/{weatherData.metar.wind_speed}kt
-                                {weatherData.metar.wind_gust && ` G${weatherData.metar.wind_gust}kt`}
-                              </span>
-                            </div>
-                          )}
-                          
-                          {weatherData.metar.visibility && (
-                            <div className="flex items-center">
-                              <Eye className="w-4 h-4 mr-2 text-green-500" />
-                              <span className="text-sm text-gray-600 dark:text-gray-300">
-                                {weatherData.metar.visibility}km vis
-                              </span>
-                            </div>
-                          )}
-                          
-                          {weatherData.metar.observation_time && (
-                            <div className="flex items-center">
-                              <Clock className="w-4 h-4 mr-2 text-purple-500" />
-                              <span className="text-sm text-gray-600 dark:text-gray-300">
-                                {weatherData.metar.observation_time}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                        
-                        <div className="bg-gray-100 dark:bg-gray-700 rounded p-2">
-                          <p className="text-xs font-mono text-gray-700 dark:text-gray-300 break-all">
-                            {weatherData.metar.raw}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* TAF Section */}
-                    {weatherData.taf && (
-                      <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
-                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center">
-                          <Cloud className="w-4 h-4 mr-2" />
-                          Forecast (TAF)
-                        </h4>
-                        
-                        {weatherData.taf.valid_time && (
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                            Valid: {weatherData.taf.valid_time}
-                          </p>
-                        )}
-                        
-                        <div className="bg-gray-100 dark:bg-gray-700 rounded p-2">
-                          <p className="text-xs font-mono text-gray-700 dark:text-gray-300 break-all">
-                            {weatherData.taf.raw}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
-                      Last updated: {new Date(weatherData.timestamp).toLocaleString()}
-                    </div>
-                  </div>
-                )}
-
-                {!weatherLoading && !weatherError && !weatherData && (
-                  <div className="text-center py-8">
-                    <Cloud className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500 dark:text-gray-400">No weather data available</p>
-                  </div>
-                )}
+                <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                  Visibility: 10km | Wind: 15 km/h NW
+                </div>
               </div>
             </div>
           </div>
