@@ -34,7 +34,7 @@ const LanguageToggle: React.FC = () => {
   };
 
   return (
-    <div className="relative inline-flex bg-white/25 dark:bg-gray-800 backdrop-blur-sm rounded-full p-1 transition-colors duration-200 border border-white/40 dark:border-gray-600">
+    <div className="relative inline-flex bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-full p-1 transition-colors duration-200 border border-white/60 dark:border-gray-700 shadow-lg">
       {/* Background slider */}
       <div
         className={`absolute top-1 bottom-1 bg-white dark:bg-gray-700 rounded-full shadow-sm transition-all duration-300 ease-in-out ${
@@ -54,7 +54,7 @@ const LanguageToggle: React.FC = () => {
             className={`relative z-10 flex items-center space-x-1.5 px-3 py-2 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
               isActive
                 ? 'text-gray-900 dark:text-white'
-                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white'
             }`}
             aria-label={`Switch to ${option.label}`}
             role="radio"
@@ -63,8 +63,8 @@ const LanguageToggle: React.FC = () => {
             {/* Country Code */}
             <span className={`text-xs font-medium transition-colors duration-200 ${
               isActive 
-                ? 'text-gray-600 dark:text-gray-300' 
-                : 'text-gray-400 dark:text-gray-500'
+                ? 'text-gray-700 dark:text-gray-300' 
+                : 'text-gray-500 dark:text-gray-400'
             }`}>
               {option.countryCode}
             </span>
@@ -73,7 +73,7 @@ const LanguageToggle: React.FC = () => {
             <span className={`text-sm font-bold transition-all duration-200 ${
               isActive 
                 ? 'text-gray-900 dark:text-white scale-105' 
-                : 'text-gray-500 dark:text-gray-400'
+                : 'text-gray-600 dark:text-gray-300'
             }`}>
               {option.languageCode}
             </span>
