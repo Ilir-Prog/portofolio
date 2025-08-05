@@ -38,6 +38,7 @@ const LanguageToggle: React.FC = () => {
       {/* Background slider */}
       <div
         className={`absolute top-1 bottom-1 bg-white dark:bg-gray-700 rounded-full shadow-sm transition-all duration-300 ease-in-out ${
+        className={`absolute top-1 bottom-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full shadow-sm transition-all duration-300 ease-in-out ${
           currentLanguage.code === 'en' 
             ? 'left-1 right-1/2 mr-0.5' 
             : 'right-1 left-1/2 ml-0.5'
@@ -53,8 +54,8 @@ const LanguageToggle: React.FC = () => {
             onClick={() => handleLanguageChange(option)}
             className={`relative z-10 flex items-center space-x-1.5 px-3 py-2 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
               isActive
-                ? 'text-gray-900 dark:text-white'
-                : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white'
+                ? 'text-white font-semibold'
+                : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white font-medium'
             }`}
             aria-label={`Switch to ${option.label}`}
             role="radio"
@@ -63,7 +64,7 @@ const LanguageToggle: React.FC = () => {
             {/* Country Code */}
             <span className={`text-xs font-medium transition-colors duration-200 ${
               isActive 
-                ? 'text-gray-700 dark:text-gray-300' 
+                ? 'text-white/90' 
                 : 'text-gray-500 dark:text-gray-400'
             }`}>
               {option.countryCode}
@@ -72,7 +73,7 @@ const LanguageToggle: React.FC = () => {
             {/* Language Code */}
             <span className={`text-sm font-bold transition-all duration-200 ${
               isActive 
-                ? 'text-gray-900 dark:text-white scale-105' 
+                ? 'text-white scale-105' 
                 : 'text-gray-600 dark:text-gray-300'
             }`}>
               {option.languageCode}
