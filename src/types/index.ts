@@ -92,6 +92,12 @@ export interface Content {
       email: string;
       phone: string;
     };
+    weatherWidget: {
+      title: string;
+      partlyCloudy: string;
+      visibility: string;
+      wind: string;
+    };
   };
   footer: {
     copyright: string;
