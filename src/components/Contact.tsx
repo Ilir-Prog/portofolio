@@ -13,6 +13,7 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,17 +25,37 @@ const Contact: React.FC = () => {
     
     if (!formData.name || !formData.email || !formData.message) {
       setFormStatus('error');
+      setErrorMessage('Please fill in all fields');
       return;
     }
 
     setFormStatus('sending');
+    setErrorMessage('');
     
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }, 1000);
+    try {
+      const response = await fetch('/.netlify/functions/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 5000);
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setFormStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -119,7 +140,7 @@ const Contact: React.FC = () => {
                   ) : formStatus === 'error' ? (
                     <>
                       <AlertCircle className="w-5 h-5" />
-                      <span>Please fill all fields</span>
+                      <span>{errorMessage || 'Please fill all fields'}</span>
                     </>
                   ) : (
                     <>
