@@ -418,7 +418,7 @@ export const content: Record<'en' | 'sq', Content> = {
       }
     },
     footer: {
-      copyright: '© 2024 Ilir Isufi. Të gjitha të drejtat e rezervuara.'
+      copyright: '© 2025 Ilir Isufi. Të gjitha të drejtat e rezervuara.'
     }
   }
 };
