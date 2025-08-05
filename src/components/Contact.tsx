@@ -361,17 +361,3 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
-                </div>
-                <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                  Visibility: 10km | Wind: 15 km/h NW
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Contact;
