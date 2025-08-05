@@ -216,7 +216,7 @@ export const content: Record<'en' | 'sq', Content> = {
     hero: {
       title: 'Ilir Isufi',
       subtitle: 'Parashikues Aeronautik Meteorologjik',
-      cta: 'Mëso Më Shumë'
+      cta: 'Mëso më shumë'
     },
     nav: {
       about: 'Rreth Meje',
@@ -250,8 +250,8 @@ export const content: Record<'en' | 'sq', Content> = {
       title: 'Përvoja Profesionale',
       positions: [
         {
-          title: 'Parashikues i Motit Aeronautik',
-          company: 'ANSA - Zyra Meteorologjike e Aeroportit të Prishtinës',
+          title: 'Parashikues Meteorologjik Aeronautik',
+          company: 'KANS - Departamenti Meteorologjik',
           period: '2016 - Tash',
           description: [
             'Ofroj parashikime kritike të motit dhe paralajmërime për operacionet e aviacionit',
