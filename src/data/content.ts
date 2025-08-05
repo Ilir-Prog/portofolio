@@ -219,7 +219,8 @@ export const content: Record<'en' | 'sq', Content> = {
       }
     },
     footer: {
-      copyright: '© 2024 Ilir Isufi. All rights reserved.'
+      copyright: '© 2024 Ilir Isufi. All rights reserved.',
+      description: 'Aviation Weather Forecaster dedicated to ensuring safe air navigation through precise meteorological services.'
     }
   },
   sq: {
@@ -440,7 +441,8 @@ export const content: Record<'en' | 'sq', Content> = {
       }
     },
     footer: {
-      copyright: '© 2025 Ilir Isufi. Të gjitha të drejtat e rezervuara.'
+      copyright: '© 2025 Ilir Isufi. Të gjitha të drejtat e rezervuara.',
+      description: 'Parashikues i Motit Ajror i përkushtuar për të siguruar navigacion të sigurt ajror përmes shërbimeve të sakta meteorologjike.'
     }
   }
 };

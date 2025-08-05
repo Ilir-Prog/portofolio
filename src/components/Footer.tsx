@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
               Ilir Isufi
             </button>
             <p className="text-gray-300 leading-relaxed">
-              Aviation Weather Forecaster dedicated to ensuring safe air navigation through precise meteorological services.
+              {footerContent.description}
             </p>
           </div>
 
