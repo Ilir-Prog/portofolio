@@ -41,9 +41,40 @@ const Contact: React.FC = () => {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
+      if (response.ok) {
+        let result;
+        try {
+          result = await response.json();
+        } catch (jsonError) {
+          // If JSON parsing fails but response is ok, assume success
+          result = { success: true };
+        }
+        
+        if (result.success !== false) {
+          setFormStatus('success');
+          setFormData({ name: '', email: '', message: '' });
+          setTimeout(() => setFormStatus('idle'), 5000);
+        } else {
+          throw new Error(result.error || 'Failed to send message');
+        }
+      } else {
+        // Handle non-ok responses
+        let errorMessage = 'Failed to send message';
+        try {
+          const result = await response.json();
+          errorMessage = result.error || errorMessage;
+        } catch (jsonError) {
+          // If JSON parsing fails, try to get text response
+          try {
+            const textResponse = await response.text();
+            errorMessage = textResponse || errorMessage;
+          } catch (textError) {
+            // Use default error message
+          }
+        }
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
         setFormStatus('success');
         setFormData({ name: '', email: '', message: '' });
         setTimeout(() => setFormStatus('idle'), 5000);
