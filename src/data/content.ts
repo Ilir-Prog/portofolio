@@ -209,6 +209,12 @@ export const content: Record<'en' | 'sq', Content> = {
     },
     footer: {
       copyright: '© 2024 Ilir Isufi. All rights reserved.'
+    },
+    weatherWidget: {
+      title: 'Current Weather - Pristina',
+      partlyCloudy: 'Partly Cloudy',
+      visibility: 'Visibility',
+      wind: 'Wind'
     }
   },
   sq: {
