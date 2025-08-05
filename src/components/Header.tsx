@@ -41,13 +41,13 @@ const Header: React.FC = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('hero')}
-              className={`text-2xl font-bold transition-colors ${
-                  isScrolled 
-                      ? 'text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300' 
-                      : 'text-white hover:text-blue-200 dark:text-white dark:hover:text-blue-300'
-              }`}
+              className="transition-all duration-300 hover:scale-105"
             >
-              II
+              <img
+                src="https://odndnjvmggwicvjrwieg.supabase.co/storage/v1/object/sign/portofolio/images/Foto.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83ZmMyMDFkMC1jNWI2LTQ5YjItOGRmNC0zMWI4YWE3YzgzMDIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwb3J0b2ZvbGlvL2ltYWdlcy9Gb3RvLnBuZyIsImlhdCI6MTc1NDM1NTE2MywiZXhwIjoyNzAwNDM1MTYzfQ.NyfDDWmkfab4NrD7CidjFMknfcZ6Rb1ZwByhc6fgHoE"
+                alt="Ilir Isufi"
+                className="w-12 h-12 rounded-full object-cover border-2 border-white/30 shadow-lg"
+              />
             </button>
           </div>
 
