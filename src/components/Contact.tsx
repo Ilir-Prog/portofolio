@@ -29,31 +29,12 @@ const Contact: React.FC = () => {
 
     setFormStatus('sending');
     
-    try {
-      const response = await fetch('/.netlify/functions/send-contact-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        setFormStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setFormStatus('idle'), 5000);
-      } else {
-        console.error('Server error:', result.error);
-        setFormStatus('error');
-        setTimeout(() => setFormStatus('idle'), 5000);
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-      setFormStatus('error');
-      setTimeout(() => setFormStatus('idle'), 5000);
-    }
+    // Simulate form submission
+    setTimeout(() => {
+      setFormStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }, 1000);
   };
 
   return (
@@ -138,7 +119,7 @@ const Contact: React.FC = () => {
                   ) : formStatus === 'error' ? (
                     <>
                       <AlertCircle className="w-5 h-5" />
-                      <span>Failed to send message</span>
+                      <span>Please fill all fields</span>
                     </>
                   ) : (
                     <>
