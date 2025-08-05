@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
 
           {/* Controls & Social */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Connect & Settings</h3>
+            <h3 className="text-xl font-semibold">{footerContent.connectSettings}</h3>
             
             {/* Social Links Placeholder */}
             <div className="flex space-x-4">

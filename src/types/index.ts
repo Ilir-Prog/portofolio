@@ -107,6 +107,7 @@ export interface Content {
   footer: {
     copyright: string;
     description: string;
+    connectSettings: string;
   };
 }
 
