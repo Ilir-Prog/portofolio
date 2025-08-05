@@ -75,13 +75,6 @@ const Contact: React.FC = () => {
         throw new Error(errorMessage);
       }
     } catch (error) {
-        setFormStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setFormStatus('idle'), 5000);
-      } else {
-        throw new Error(result.error || 'Failed to send message');
-      }
-    } catch (error) {
       console.error('Error sending message:', error);
       setFormStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
