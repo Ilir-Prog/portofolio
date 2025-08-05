@@ -205,16 +205,16 @@ export const content: Record<'en' | 'sq', Content> = {
       info: {
         email: 'iliri.isufi@gmail.com',
         phone: '+383 49 857 171'
+      },
+      weatherWidget: {
+        title: 'Current Weather - Pristina',
+        partlyCloudy: 'Partly Cloudy',
+        visibility: 'Visibility',
+        wind: 'Wind'
       }
     },
     footer: {
       copyright: '© 2024 Ilir Isufi. All rights reserved.'
-    },
-    weatherWidget: {
-      title: 'Current Weather - Pristina',
-      partlyCloudy: 'Partly Cloudy',
-      visibility: 'Visibility',
-      wind: 'Wind'
     }
   },
   sq: {
