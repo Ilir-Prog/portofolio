@@ -174,17 +174,17 @@ const Contact: React.FC = () => {
               {/* Weather Widget Placeholder */}
               <div className="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 rounded-xl shadow-lg p-8">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                  Current Weather - Pristina
+                  {contactContent.weatherWidget.title}
                 </h3>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-3xl font-bold text-gray-900 dark:text-white">22°C</p>
-                    <p className="text-gray-600 dark:text-gray-300">Partly Cloudy</p>
+                    <p className="text-gray-600 dark:text-gray-300">{contactContent.weatherWidget.partlyCloudy}</p>
                   </div>
                   <div className="text-6xl">⛅</div>
                 </div>
                 <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                  Visibility: 10km | Wind: 15 km/h NW
+                  {contactContent.weatherWidget.visibility}: 10km | {contactContent.weatherWidget.wind}: 15 km/h NW
                 </div>
               </div>
             </div>
