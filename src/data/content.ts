@@ -216,7 +216,6 @@ export const content: Record<'en' | 'sq', Content> = {
     hero: {
       title: 'Ilir Isufi',
       subtitle: 'Parashikues Aeronautik Meteorologjik',
-      
       cta: 'Mëso Më Shumë'
     },
     nav: {
