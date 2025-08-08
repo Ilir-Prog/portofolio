@@ -101,8 +101,8 @@ ${message}
 This message was sent from the contact form on your portfolio website.
     `;
     sendSmtpEmail.sender = { 
-      name: 'Portfolio Contact Form', 
-      email: 'iliri.isufi@gmail.com' 
+      name: name, 
+      email: email 
     };
     sendSmtpEmail.to = [{ 
       email: 'iliri.isufi@gmail.com', 
