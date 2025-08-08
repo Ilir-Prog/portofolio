@@ -1,5 +1,5 @@
 import { Handler } from '@netlify/functions';
-import * as nodemailer from 'nodemailer';
+import * as SibApiV3Sdk from '@sendinblue/client';
 
 const handler: Handler = async (event, context) => {
   // Only allow POST requests
@@ -57,19 +57,14 @@ const handler: Handler = async (event, context) => {
       };
     }
 
-    // Create SMTP transporter
-    const transporter = nodemailer.createTransporter({
-      host: 'smtp-relay.brevo.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: '94125e001@smtp-brevo.com',
-        pass: '4s2wHqxO3RmEASJP',
-      },
-    });
+    // Initialize Brevo API client
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+    apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY || '');
 
-    // Prepare email content
-    const htmlContent = `
+    // Prepare email data
+    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+    sendSmtpEmail.subject = `New Contact Form Message from ${name}`;
+    sendSmtpEmail.htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #2563eb; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
           New Contact Form Submission
@@ -93,8 +88,7 @@ const handler: Handler = async (event, context) => {
         </div>
       </div>
     `;
-
-    const textContent = `
+    sendSmtpEmail.textContent = `
 New Contact Form Submission
 
 Name: ${name}
@@ -106,19 +100,21 @@ ${message}
 ---
 This message was sent from the contact form on your portfolio website.
     `;
-
-    // Email options
-    const mailOptions = {
-      from: `"${name}" <${email}>`,
-      to: 'iliri.isufi@gmail.com',
-      replyTo: email,
-      subject: `New Contact Form Message from ${name}`,
-      text: textContent,
-      html: htmlContent,
+    sendSmtpEmail.sender = { 
+      name: 'Portfolio Contact Form', 
+      email: process.env.BREVO_SENDER_EMAIL || 'noreply@yourdomain.com' 
+    };
+    sendSmtpEmail.to = [{ 
+      email: 'iliri.isufi@gmail.com', 
+      name: 'Ilir Isufi' 
+    }];
+    sendSmtpEmail.replyTo = { 
+      email: email, 
+      name: name 
     };
 
     // Send the email
-    await transporter.sendMail(mailOptions);
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
 
     return {
       statusCode: 200,
