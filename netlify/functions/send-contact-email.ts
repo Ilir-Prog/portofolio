@@ -59,7 +59,7 @@ const handler: Handler = async (event, context) => {
 
     // Initialize Brevo API client
     const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-    apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY || '');
+    apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, '4s2wHqxO3RmEASJP');
 
     // Prepare email data
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
@@ -102,7 +102,7 @@ This message was sent from the contact form on your portfolio website.
     `;
     sendSmtpEmail.sender = { 
       name: 'Portfolio Contact Form', 
-      email: process.env.BREVO_SENDER_EMAIL || 'noreply@yourdomain.com' 
+      email: 'iliri.isufi@gmail.com' 
     };
     sendSmtpEmail.to = [{ 
       email: 'iliri.isufi@gmail.com', 
