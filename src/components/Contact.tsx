@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-};
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,8 +28,9 @@ const Contact: React.FC = () => {
     }
 
     //setFormStatus('sending');
+  };
 
-   return (
+  return (
     <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -53,7 +54,6 @@ const Contact: React.FC = () => {
                     {contactContent.form.name}
                   </label>
                   <input
-  return (
                     type="text"
                     id="name"
                     name="name"
@@ -185,7 +185,6 @@ const Contact: React.FC = () => {
         </div>
       </div>
     </section>
-  );
   );
 };
 
