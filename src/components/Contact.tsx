@@ -39,26 +39,12 @@ const Contact: React.FC = () => {
 
   setFormStatus('sending');
 
-  try {
-    const res = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    });
-
-    if (res.ok) {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    } else {
-      throw new Error('Email failed');
-    }
-  } catch (error) {
-    console.error(error);
-    setFormStatus('error');
-  }
+  // Simulate email sending process
+  setTimeout(() => {
+    setFormStatus('success');
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => setFormStatus('idle'), 3000);
+  }, 2000);
 };
 
 
