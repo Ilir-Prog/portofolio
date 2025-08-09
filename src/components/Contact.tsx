@@ -19,16 +19,59 @@ const Contact: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  //const handleSubmit = async (e: React.FormEvent) => {
+    //e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus('error');
-      return;
-    }
+    //if (!formData.name || !formData.email || !formData.message) {
+      //setFormStatus('error');
+      //return;
+    //}
 
-    setFormStatus('sending');
-    
+    //setFormStatus('sending');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!formData.name || !formData.email || !formData.message) {
+    setFormStatus('error');
+    return;
+  }
+
+  setFormStatus('sending');
+
+  try {
+    const res = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (res.ok) {
+      setFormStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormStatus('idle'), 3000);
+    } else {
+      throw new Error('Email failed');
+    }
+  } catch (error) {
+    console.error(error);
+    setFormStatus('error');
+  }
+};
+
+
+
+
+
+
+
+  
+
+
+
+  
     // Simulate form submission
     setTimeout(() => {
       setFormStatus('success');
