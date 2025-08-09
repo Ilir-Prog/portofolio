@@ -19,63 +19,17 @@ const Contact: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
 };
 
-  //const handleSubmit = async (e: React.FormEvent) => {
-    //e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     
-    //if (!formData.name || !formData.email || !formData.message) {
-      //setFormStatus('error');
-      //return;
-    //}
+    if (!formData.name || !formData.email || !formData.message) {
+      setFormStatus('error');
+      return;
+    }
 
     //setFormStatus('sending');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-  if (!formData.name || !formData.email || !formData.message) {
-    setFormStatus('error');
-    return;
-  }
-
-  setFormStatus('sending');
-
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setFormStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setFormStatus('idle'), 3000);
-      } else {
-        console.error('Email sending failed:', result.error);
-        setFormStatus('error');
-        setTimeout(() => setFormStatus('idle'), 3000);
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-      setFormStatus('error');
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }
-};
-
-
-
-
-
-
-
-
-
-
-  return (
+   return (
     <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
