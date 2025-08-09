@@ -53,6 +53,7 @@ const Contact: React.FC = () => {
                     {contactContent.form.name}
                   </label>
                   <input
+  return (
                     type="text"
                     id="name"
                     name="name"
@@ -184,6 +185,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
     </section>
+  );
   );
 };
 
