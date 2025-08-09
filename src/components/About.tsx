@@ -62,7 +62,6 @@ const About: React.FC = () => {
               {aboutContent.coreSkills.skills.map((skill, index) => (
                 <div
                   key={index}
-                  className="flex items-center space-x-3 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
                   className="flex items-center space-x-3 p-4 rounded-lg bg-theme-primary/10 dark:bg-theme-primary/20 hover:bg-theme-primary/20 dark:hover:bg-theme-primary/30 transition-colors"
                 >
                   <div className="w-2 h-2 bg-theme-primary rounded-full flex-shrink-0"></div>

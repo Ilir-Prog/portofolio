@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
+};
 
   //const handleSubmit = async (e: React.FormEvent) => {
     //e.preventDefault();
@@ -67,18 +67,8 @@ const Contact: React.FC = () => {
 
 
 
-  
 
 
-
-  
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }, 1000);
-  };
 
   return (
     <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors">
