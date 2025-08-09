@@ -1,29 +1,36 @@
 const { TransactionalEmailsApi, TransactionalEmailsApiApiKeys, SendSmtpEmail } = require('@getbrevo/brevo');
 
 module.exports = async (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  // Handle preflight OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  // Only allow POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
   try {
-    const { name, email, message } = req.body;
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Content-Type', 'application/json');
+
+    // Handle preflight OPTIONS request
+    if (req.method === 'OPTIONS') {
+      return res.status(200).json({ message: 'OK' });
+    }
+
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    // Parse request body safely
+    let body;
+    try {
+      body = req.body || {};
+    } catch (parseError) {
+      return res.status(400).json({ error: 'Invalid JSON in request body' });
+    }
+
+    const { name, email, message } = body;
 
     // Validate required fields
     if (!name || !email || !message) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: name, email, and message are required' 
-      });
+      return res.status(400).json({ error: 'Missing fields' });
     }
 
     // Validate email format
@@ -36,7 +43,7 @@ module.exports = async (req, res) => {
     const apiKey = process.env.BREVO_API_KEY;
     if (!apiKey) {
       console.error('BREVO_API_KEY environment variable is not set');
-      return res.status(500).json({ error: 'Email service configuration error' });
+      return res.status(500).json({ error: 'Internal server error' });
     }
 
     // Initialize Brevo API
@@ -109,30 +116,30 @@ module.exports = async (req, res) => {
     console.log('Email sent successfully:', result.messageId);
     
     return res.status(200).json({ 
-      success: true, 
-      message: 'Email sent successfully',
-      messageId: result.messageId 
+      message: 'Email sent successfully'
     });
 
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error in send-email API:', error);
     
-    // Handle specific Brevo API errors
-    if (error.response) {
-      const status = error.response.status;
-      const errorData = error.response.body || error.response.data;
-      
-      if (status === 401) {
-        return res.status(500).json({ error: 'Email service authentication failed' });
-      } else if (status === 400) {
-        return res.status(400).json({ error: 'Invalid email data provided' });
+    // Ensure we always return a JSON response
+    try {
+      // Handle specific Brevo API errors
+      if (error.response) {
+        const status = error.response.status;
+        
+        if (status === 401) {
+          return res.status(500).json({ error: 'Internal server error' });
+        } else if (status === 400) {
+          return res.status(400).json({ error: 'Invalid email data' });
+        }
       }
       
-      console.error('Brevo API Error:', status, errorData);
+      return res.status(500).json({ error: 'Internal server error' });
+    } catch (responseError) {
+      // Last resort - ensure we send something
+      console.error('Error sending error response:', responseError);
+      return res.status(500).json({ error: 'Internal server error' });
     }
-    
-    return res.status(500).json({ 
-      error: 'Failed to send email. Please try again later.' 
-    });
   }
 };
