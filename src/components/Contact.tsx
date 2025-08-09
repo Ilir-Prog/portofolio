@@ -29,7 +29,7 @@ const Contact: React.FC = () => {
 
     //setFormStatus('sending');
 
-const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   if (!formData.name || !formData.email || !formData.message) {
@@ -39,32 +39,31 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   setFormStatus('sending');
 
-  try {
-    const res = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-
-    let data;
     try {
-      data = await res.json(); // <-- try to parse JSON response
-    } catch {
-      data = null; // <-- fallback if response is empty or invalid JSON
-    }
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (res.ok) {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    } else {
+      const result = await response.json();
+
+      if (response.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 3000);
+      } else {
+        console.error('Email sending failed:', result.error);
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
       setFormStatus('error');
-      console.error(data?.error || 'Unknown error');
+      setTimeout(() => setFormStatus('idle'), 3000);
     }
-  } catch (error) {
-    console.error('Network error:', error);
-    setFormStatus('error');
-  }
 };
 
 
