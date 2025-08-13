@@ -29,9 +29,9 @@ const Contact: React.FC = () => {
       return;
     }
 
-    //setFormStatus('sending');
-  };
+    setFormStatus('sending');
 
+    try {
       // Send email using EmailJS
       await emailjs.send(
         emailjsConfig.SERVICE_ID,
@@ -48,6 +48,24 @@ const Contact: React.FC = () => {
       setFormStatus('success');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setFormStatus('idle'), 3000);
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
+
+  return (
+    <section className="py-20 bg-white dark:bg-gray-900 transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            {contactContent.title}
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            {contactContent.subtitle}
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
