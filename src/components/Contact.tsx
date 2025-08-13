@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { useLanguage } from '../contexts/LanguageContext';
 import { content } from '../data/content';
+import { emailjsConfig } from '../config/EmailjsConfig';
 
 const Contact: React.FC = () => {
   const { currentLanguage } = useLanguage();
@@ -30,21 +32,22 @@ const Contact: React.FC = () => {
     //setFormStatus('sending');
   };
 
-  return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Section Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              {contactContent.title}
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-4">
-              {contactContent.subtitle}
-            </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-teal-500 mx-auto rounded-full"></div>
-          </div>
+      // Send email using EmailJS
+      await emailjs.send(
+        emailjsConfig.SERVICE_ID,
+        emailjsConfig.TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Ilir Isufi',
+        },
+        emailjsConfig.PUBLIC_KEY
+      );
 
+      setFormStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormStatus('idle'), 3000);
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8">
